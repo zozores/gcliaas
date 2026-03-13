@@ -40,7 +40,28 @@ cd telegram_bot
 make install # Builds the binary, copies it to ~/.local/bin, and sets up a systemd user service.
 ```
 
-## Running
+## Docker Support
+
+You can run the entire stack (both `gemini_listen` and `telegram_bot`) using Docker Compose. Ensure you have your environment variables set correctly, specifically `TELEGRAM_BOT_TOKEN`, `GEMINI_API_KEY`, and optionally `TARGET_CHAT_ID`, ideally in a `.env` file at the root of the `telegram_bot` directory or at the root of the repository.
+
+To build and start the containers in the background using the provided root Makefile:
+```bash
+make up
+```
+
+To view the logs:
+```bash
+make logs
+```
+
+To stop the containers:
+```bash
+make down
+```
+
+Alternatively, you can use docker compose directly: `docker compose up -d --build`.
+
+## Running Locally Without Docker
 
 Both services include `Makefile`s to build, install, and manage them as `systemd` user services. 
 

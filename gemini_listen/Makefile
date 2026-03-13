@@ -4,7 +4,7 @@ SERVICE_NAME=gemini-listen.service
 INSTALL_DIR=$(HOME)/.local/bin
 SYSTEMD_USER_DIR=$(HOME)/.config/systemd/user
 
-.PHONY: all build run clean install uninstall restart status
+.PHONY: all build run clean install uninstall restart status docker-build
 
 all: build
 
@@ -39,3 +39,6 @@ restart:
 
 status:
 	systemctl --user status $(SERVICE_NAME)
+
+docker-build:
+	docker build -t $(BINARY_NAME) .

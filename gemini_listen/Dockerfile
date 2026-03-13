@@ -1,0 +1,35 @@
+# Stage 1: Build the Go binary
+FROM golang:1.26-alpine AS builder
+
+WORKDIR /app
+
+# Copy go mod and sum files
+COPY go.mod ./
+# Copy go.sum if it exists (ignoring error if not)
+COPY go.sum* ./
+
+# Download dependencies
+RUN go mod download
+
+# Copy source code
+COPY . .
+
+# Build the application
+RUN CGO_ENABLED=0 GOOS=linux go build -o gemini-listen main.go
+
+# Stage 2: Final image with Node.js and Gemini CLI
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install Gemini CLI globally
+RUN npm install -g @google/gemini-cli
+
+# Copy the binary from the builder stage
+COPY --from=builder /app/gemini-listen .
+
+# Expose the port
+EXPOSE 8765
+
+# Run the application
+CMD ["./gemini-listen"]
