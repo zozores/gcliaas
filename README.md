@@ -44,7 +44,7 @@ make install # Builds the binary, copies it to ~/.local/bin, and sets up a syste
 
 You can run the entire stack (both `gemini_listen` and `telegram_bot`) using Docker Compose. Ensure you have your environment variables set correctly, specifically `TELEGRAM_BOT_TOKEN`, `GEMINI_API_KEY`, and optionally `TARGET_CHAT_ID`, ideally in a `.env` file at the root of the `telegram_bot` directory or at the root of the repository.
 
-**Important (if you want to use oauth authentication)**: You must run `gemini-cli` locally, do the authentication and copy the `.gemini` directory located at `~/.gemini` inside the `gemini_listen` folder before starting the containers. This directory is mounted as a volume to persist the Gemini CLI configuration and session data.
+**Important (if you want to use oauth authentication)**: You must run `gemini-cli` locally, do the OAuth authentication and copy the `.gemini` directory located at `~/.gemini` inside the `gemini_listen` folder before starting the containers. This directory is mounted as a volume to persist the Gemini CLI configuration and session data.
 
 To build and start the containers in the background using the provided root Makefile:
 ```bash
