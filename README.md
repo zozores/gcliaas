@@ -7,6 +7,7 @@ This repository contains two interconnected Go projects that expose the existing
 - `gemini` CLI tool
 - `systemd` user service
 - `go` 1.26.1
+- `docker` and `docker-compose` (if you want to use docker)
 
 ## Components
 
