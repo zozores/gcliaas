@@ -1,0 +1,16 @@
+[Unit]
+Description=Gemini Listen Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/your_user/.local/bin
+ExecStart=gemini-listen
+
+Restart=on-failure
+RestartSec=5s
+
+# Environment="GEMINI_API_KEY=your_api_key_here"
+
+[Install]
+WantedBy=default.target

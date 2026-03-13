@@ -1,0 +1,17 @@
+[Unit]
+Description=Gemini Telegram Bot Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/your_user/.local/bin
+ExecStart=gemini-telegram-bot
+
+Restart=on-failure
+RestartSec=5s
+
+# Environment="TELEGRAM_BOT_TOKEN="
+Environment="GEMINI_ENDPOINT=http://127.0.0.1:8765/event"
+
+[Install]
+WantedBy=default.target
