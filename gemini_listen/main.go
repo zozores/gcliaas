@@ -18,8 +18,11 @@ import (
 
 func runGemini(prompt string) (string, error) {
 	cmd := exec.Command("gemini", "--yolo", "--prompt", prompt, "-m", "gemini-2.5-flash")
-	out, err := cmd.CombinedOutput()
+	out, err := cmd.Output()
 	if err != nil {
+		if exitErr, ok := err.(*exec.ExitError); ok {
+			return "", fmt.Errorf("%s: %v\nStderr: %s", strings.TrimSpace(string(out)), err, string(exitErr.Stderr))
+		}
 		return "", fmt.Errorf("%s: %v", strings.TrimSpace(string(out)), err)
 	}
 	return strings.TrimSpace(string(out)), nil

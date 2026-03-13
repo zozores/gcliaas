@@ -4,15 +4,17 @@ services:
       context: ./gemini_listen
     ports:
       - "8765:8765"
-    environment:
-      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    volumes:
+      - ./gemini_listen/.gemini:/home/linuxbrew/.gemini
     restart: unless-stopped
 
   telegram_bot:
     build:
       context: ./telegram_bot
+    env_file:
+      - .env
     environment:
-      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      # - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
       - GEMINI_ENDPOINT=http://gemini_listen:8765/event
     depends_on:
       - gemini_listen

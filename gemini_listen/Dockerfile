@@ -17,13 +17,13 @@ COPY . .
 # Build the application
 RUN CGO_ENABLED=0 GOOS=linux go build -o gemini-listen main.go
 
-# Stage 2: Final image with Node.js and Gemini CLI
-FROM node:20-alpine
+# Stage 2: Final image with Homebrew and Gemini CLI
+FROM homebrew/brew:latest
 
 WORKDIR /app
 
-# Install Gemini CLI globally
-RUN npm install -g @google/gemini-cli
+# Install Gemini CLI via Homebrew
+RUN brew install gemini-cli && brew cleanup && rm -rf /home/linuxbrew/.cache
 
 # Copy the binary from the builder stage
 COPY --from=builder /app/gemini-listen .
