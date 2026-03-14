@@ -4,7 +4,7 @@ SERVICE_NAME=gemini-listen.service
 INSTALL_DIR=$(HOME)/.local/bin
 SYSTEMD_USER_DIR=$(HOME)/.config/systemd/user
 
-.PHONY: all build run clean install uninstall restart status docker-build
+.PHONY: all build run clean install uninstall restart status docker-build install-extensions
 
 all: build
 
@@ -42,3 +42,10 @@ status:
 
 docker-build:
 	docker build -t $(BINARY_NAME) .
+
+install-extensions:
+	gemini extensions install https://github.com/github/github-mcp-server
+	gemini extensions install https://github.com/obra/superpowers
+	gemini extensions install https://github.com/upstash/context7
+	gemini extensions install https://github.com/mvanhorn/last30days-skill.git
+	gemini extensions install https://github.com/adeze/raindrop-mcp

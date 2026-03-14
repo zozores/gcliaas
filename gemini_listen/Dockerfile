@@ -28,6 +28,9 @@ RUN brew install gemini-cli && brew cleanup && rm -rf /home/linuxbrew/.cache
 # Copy the binary from the builder stage
 COPY --from=builder /app/gemini-listen .
 
+# Install Gemini Extensions
+# RUN gemini extensions install https://github.com/github/github-mcp-server
+
 # Expose the port
 EXPOSE 8765
 
