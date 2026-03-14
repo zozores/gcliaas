@@ -21,8 +21,8 @@ clean:
 install: build
 	mkdir -p $(INSTALL_DIR)
 	mkdir -p $(SYSTEMD_USER_DIR)
-	cp $(BINARY_NAME) $(INSTALL_DIR)/
-	cp $(SERVICE_NAME) $(SYSTEMD_USER_DIR)/
+	mv $(BINARY_NAME) $(INSTALL_DIR)/
+	mv $(SERVICE_NAME) $(SYSTEMD_USER_DIR)/
 	systemctl --user daemon-reload
 	systemctl --user enable $(SERVICE_NAME)
 	systemctl --user start $(SERVICE_NAME)
