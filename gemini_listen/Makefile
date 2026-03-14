@@ -44,8 +44,5 @@ docker-build:
 	docker build -t $(BINARY_NAME) .
 
 install-extensions:
-	gemini extensions install https://github.com/github/github-mcp-server
-	gemini extensions install https://github.com/obra/superpowers
-	gemini extensions install https://github.com/upstash/context7
-	gemini extensions install https://github.com/mvanhorn/last30days-skill.git
-	gemini extensions install https://github.com/adeze/raindrop-mcp
+	# gemini extensions install https://github.com/github/github-mcp-server
+
