@@ -19,8 +19,10 @@ A lightweight Go HTTP server that acts as a bridge between HTTP requests and the
 - **Default Port**: `8765`
 
 #### Setup
+First, rename the example service file:
 ```bash
 cd gemini_listen
+mv gemini-listen.service.example gemini-listen.service
 make install # Builds the binary, copies it to ~/.local/bin, and sets up a systemd user service.
 ```
 
@@ -36,8 +38,10 @@ A Telegram bot written in Go that forwards user messages (text or voice) to the 
   - `TARGET_CHAT_ID`: (Optional) Restrict the bot to only respond to a specific chat ID.
 
 #### Setup
+First, rename the example service file and configure your environment variables (such as `TELEGRAM_BOT_TOKEN`):
 ```bash
 cd telegram_bot
+mv gemini-telegram-bot.service.example gemini-telegram-bot.service
 make install # Builds the binary, copies it to ~/.local/bin, and sets up a systemd user service.
 ```
 
